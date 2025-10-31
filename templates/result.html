@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Health Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Your Health Score: {{ score }}</h1>
+    <h2>BMI: {{ bmi }}</h2>
+    <h3>Status: {{ classification }}</h3>
+    <div>
+        <h4>Component Scores</h4>
+        <ul>
+        {% for k, v in detail.items() %}
+            <li>{{ k }}: {{ v }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <h4>Your Personalized Recommendations</h4>
+        <pre style="white-space: pre-wrap; text-wrap: auto;">{{ gemini }}</pre>
+    </div>
+    <a href="/input">Try Again</a>
+</body>
+</html>

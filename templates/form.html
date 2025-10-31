@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Health Profile Input</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div>
+      <div class="health-assessment-card">
+        <div class="header-row">
+          <span class="health-icon">🩺</span>
+          <span class="health-title">Health Assessment</span>
+        </div>
+        <p class="subtitle">Enter your health metrics for personalized insights</p>
+        <form method="post" action="/input">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="weight">Weight (kg)</label>
+              <input type="number" id="weight" name="weight" required />
+            </div>
+            <div class="form-group">
+              <label for="height">Height (cm)</label>
+              <input type="number" id="height" name="height" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="number" id="age" name="age" required />
+            </div>
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender">
+                <option>Select gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="sleep">Sleep Duration (hours)</label>
+              <input type="number" id="sleep" name="sleep" required />
+            </div>
+            <div class="form-group">
+              <label for="water">Water Intake (liters)</label>
+              <input type="number" id="water" name="water" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="exercise">Exercise Duration (minutes)</label>
+              <input type="number" id="exercise" name="exercise" required />
+            </div>
+          </div>
+          <button class="gradient-btn" type="submit">Analyze Health Metrics</button>
+        </form>
+      </div>
+      
+
+      {% if result %}
+      <div class="result-section">
+        <h2>Your Health Score: {{ result.score }}</h2>
+        <h3>BMI: {{ result.bmi }}</h3>
+        <h4>Status: {{ result.classification }}</h4>
+        <div>
+          <h5>Component Scores</h5>
+          <ul>
+            {% for k, v in result.detail.items() %}
+            <li>{{ k }}: {{ v }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div>
+          <h5>Model Recommendation (from training data)</h5>
+          <pre style="white-space: pre-wrap; text-wrap: auto">{{ result.gemini }}</pre>
+        </div>
+        <div>
+          <h5>Your Personalized Suggestions</h5>
+          <pre style="white-space: pre-wrap; text-wrap: auto">{{ result.personal }}</pre>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
