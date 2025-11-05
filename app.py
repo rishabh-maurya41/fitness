@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from health_logic import calculate_bmi, health_score_and_classification, generate_personal_suggestion
+from health_logic import calculate_bmi, bmi_category, health_score_and_classification, generate_personal_suggestion
 from ml_model import get_model
 
 app = Flask(__name__)
@@ -23,6 +23,7 @@ def input_form():
         }
         bmi = calculate_bmi(data["height"], data["weight"])
         data["bmi"] = bmi
+        bmi_status = bmi_category(bmi)
         score, classification, detail = health_score_and_classification(data, bmi)
         # Use the trained model to suggest based on dataset
         model = get_model()
@@ -32,6 +33,7 @@ def input_form():
             "score": score,
             "bmi": bmi,
             "classification": classification,
+            "bmi_status": bmi_status,
             "detail": detail,
             "gemini": suggestion,
             "personal": personal,

@@ -40,14 +40,8 @@ h3 {
 } */
 
 .result-section {
-  max-width: 70%;
+  max-width: 74%;
   margin: 20px auto;
-  padding: 25px 30px;
-  background: #f8fafc;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
-  color: #333;
 }
 
 .result-section h2 {
@@ -295,7 +289,6 @@ select:focus {
   box-shadow: 0 8px 24px rgba(53,83,160,0.10), 0 1.5px 8px rgba(53,83,160,0.04);
   padding: 32px 28px 20px 28px;
   margin: 32px auto;
-  /* max-width: 900px; */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -368,6 +361,7 @@ select:focus {
 .score-detail {
   flex: 1 1 175px;
   min-width: 175px;
+  text-align: center;
 }
 
 .score-detail .fa {
@@ -385,4 +379,56 @@ select:focus {
   font-size: 1.07rem;
   color: #122054;
   margin-top: 2px;
+}
+
+
+.recommendations-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(53,83,160,0.10);
+  padding: 32px 28px;
+  margin: 32px auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.recommendations-header {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #146479;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.recommendations-header .fa {
+  color: #21bfd8;
+  font-size: 1.65rem;
+}
+
+.recommendations-subtext {
+  font-size: 1rem;
+  color: #607089;
+  font-weight: 400;
+  margin-left: 11px;
+  padding-top: 5px;
+}
+
+.recommendation-box {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 18px;
+  background: #ebebeb;
+  border-radius: 12px;
+  padding: 18px 22px;
+  box-shadow: 0 2px 8px rgba(33,191,216,0.09);
+  font-size: 1rem;
+  color: #14526a;
+  min-height: 32px;
+}
+
+.recommendation-icon {
+  font-size: 1.4rem;
+  margin-right: 18px;
+  margin-top: 2px;
+  color: #f9ad4d;
 }

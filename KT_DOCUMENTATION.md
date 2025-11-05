@@ -3,6 +3,9 @@
 
 ---
 
+## install all dependencies from requirements.txt
+pip install <dependency name>
+
 ## Table of Contents
 1. [Project Overview](#project-overview)
 2. [System Architecture](#system-architecture)
