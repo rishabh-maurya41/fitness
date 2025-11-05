@@ -1,120 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Health Profile Input</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-  </head>
 
-  <body>
-    <div>
-      <div class="image-container">
-        <!-- <img src="{{ url_for('static', filename='health-hero.jpg') }}" alt="Health Logo" /> -->
-        <div style="width: 100%; height: 300px">
-          <div class="overlay"></div>
-          <div class="centered-text">
-            <h1 style="margin: 0">
-              <i class="fa-solid fa-heart-pulse"></i>HealthTracker
-            </h1>
-            <span>Your personalized health tracker</span>
-          </div>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <title>Health Profile Input</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
 
-        <div class="health-assessment-card form-container">
-          <div class="header-row">
-            <span class="health-icon">🩺</span>
-            <span class="health-title">Health Assessment</span>
-          </div>
-          <p class="subtitle">
-            Enter your health metrics for personalized insights
-          </p>
-          <form method="post" action="/input">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="weight">Weight (kg)</label>
-                <input type="number" id="weight" name="weight" required />
-              </div>
-              <div class="form-group">
-                <label for="height">Height (cm)</label>
-                <input type="number" id="height" name="height" required />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="age">Age</label>
-                <input type="number" id="age" name="age" required />
-              </div>
-              <div class="form-group">
-                <label for="gender">Gender</label>
-                <select id="gender" name="gender">
-                  <option>Select gender</option>
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Other</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="sleep">Sleep Duration (hours)</label>
-                <input type="number" id="sleep" name="sleep" required />
-              </div>
-              <div class="form-group">
-                <label for="water">Water Intake (liters)</label>
-                <input type="number" id="water" name="water" required />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group full-width">
-                <label for="exercise">Exercise Duration (minutes)</label>
-                <input type="number" id="exercise" name="exercise" required />
-              </div>
-            </div>
-            <button class="gradient-btn" type="submit">
-              Analyze Health Metrics
-            </button>
-          </form>
+<body>
+  <div>
+    <div class="image-container">
+      <!-- <img src="{{ url_for('static', filename='health-hero.jpg') }}" alt="Health Logo" /> -->
+      <div style="width: 100%; height: 300px">
+        <div class="overlay"></div>
+        <div class="centered-text">
+          <h1 style="margin: 0">
+            <i class="fa-solid fa-heart-pulse"></i>HealthTracker
+          </h1>
+          <span>Your personalized health tracker</span>
         </div>
       </div>
 
-      {% if result %}
-      <div class="result-section">
-        <h2>Your Health Score: {{ result.score }}</h2>
-        <h3>BMI: {{ result.bmi }}</h3>
-        <h4>Status: {{ result.classification }}</h4>
-        <div>
-          <h5>Component Scores</h5>
-          <ul>
-            {% for k, v in result.detail.items() %}
-            <li>{{ k }}: {{ v }}</li>
-            {% endfor %}
-          </ul>
+      <div class="health-assessment-card form-container">
+        <div class="header-row">
+          <span class="health-icon">🩺</span>
+          <span class="health-title">Health Assessment</span>
         </div>
-        <div>
-          <h5>Model Recommendation (from training data)</h5>
-          <pre style="white-space: pre-wrap; text-wrap: auto">
-{{ result.gemini }}</pre
-          >
-        </div>
-        <div>
-          <h5>Your Personalized Suggestions</h5>
-          <ul class="suggestions-list">
-            {% for suggestion in result.personal.split('\n') %}
-              <li>{{ suggestion }}</li>
-            {% endfor %}
-          </ul>
-        </div>
-        
-        
+        <p class="subtitle">
+          Enter your health metrics for personalized insights
+        </p>
+        <form method="post" action="/input">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="weight">Weight (kg)</label>
+              <input type="number" id="weight" name="weight" required />
+            </div>
+            <div class="form-group">
+              <label for="height">Height (cm)</label>
+              <input type="number" id="height" name="height" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="number" id="age" name="age" required />
+            </div>
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender">
+                <option>Select gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="sleep">Sleep Duration (hours)</label>
+              <input type="number" id="sleep" name="sleep" required />
+            </div>
+            <div class="form-group">
+              <label for="water">Water Intake (liters)</label>
+              <input type="number" id="water" name="water" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="exercise">Exercise Duration (minutes)</label>
+              <input type="number" id="exercise" name="exercise" required />
+            </div>
+          </div>
+          <button class="gradient-btn" type="submit">
+            Analyze Health Metrics
+          </button>
+        </form>
       </div>
-      {% endif %}
     </div>
-  </body>
+
+    {% if result %}
+    <div class="result-section">
+      <div class="score-card">
+        <div class="score-header">
+          <i class="fa fa-heartbeat"></i>
+          <span>Your Health Score</span>
+          <div class="score-subtext">Based on WHO and clinical health guidelines</div>
+        </div>
+        <div class="score-value">{{ result.score }}</div>
+        <div class="score-label {{ result.classification|lower }}">{{ result.classification }}</div>
+        <div class="score-progress">
+          <!-- <div class="score-bar" style="width: {{ result.score }}%;"></div> -->
+        </div>
+        <hr>
+        <div class="score-details-row">
+          <div class="score-detail">
+            <i class="fa fa-user"></i>
+            <div class="detail-title">AGE &amp; GENDER</div>
+            <div class="detail-value"><b>{{ result.age }} years</b> ({{ result.gender }})</div>
+          </div>
+          <div class="score-detail">
+            <i class="fa fa-balance-scale"></i>
+            <div class="detail-title">BMI STATUS</div>
+            <div class="detail-value"><b>{{ result.bmi }}</b> ({{ result.bmi_status }})</div>
+          </div>
+          <div class="score-detail">
+            <i class="fa fa-tint"></i>
+            <div class="detail-title">HYDRATION</div>
+            <div class="detail-value"><b>{{ result.water }}L</b> ({{ result.hydration_status }})</div>
+          </div>
+          <div class="score-detail">
+            <i class="fa fa-male"></i>
+            <div class="detail-title">ACTIVITY</div>
+            <div class="detail-value"><b>{{ result.exercise }}min</b> ({{ result.activity_status }})</div>
+          </div>
+          <div class="score-detail">
+            <i class="fa fa-moon"></i>
+            <div class="detail-title">SLEEP</div>
+            <div class="detail-value"><b>{{ result.sleep }}h</b> ({{ result.sleep_status }})</div>
+          </div>
+          <!-- <div class="score-detail">
+            <i class="fa fa-walking"></i>
+            <div class="detail-title">ACTIVITY LEVEL</div>
+            <div class="detail-value"><b>{{ result.activity_level }}</b></div>
+          </div> -->
+        </div>
+      </div>
+
+      <div>
+        <h5>Model Recommendation (from training data)</h5>
+        <pre style="white-space: pre-wrap; text-wrap: auto">
+{{ result.gemini }}</pre>
+      </div>
+      <div>
+        <h5>Your Personalized Suggestions</h5>
+        <ul class="suggestions-list">
+          {% for suggestion in result.personal.split('\n') %}
+          <li>{{ suggestion }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+
+    </div>
+    {% endif %}
+  </div>
+</body>
+
 </html>

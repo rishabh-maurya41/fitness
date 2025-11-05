@@ -34,7 +34,14 @@ def input_form():
             "classification": classification,
             "detail": detail,
             "gemini": suggestion,
-            "personal": personal
+            "personal": personal,
+            "age": data["age"],
+            "gender": data["gender"],
+            "height": data["height"],
+            "weight": data["weight"],
+            "sleep": data["sleep"],
+            "water": data["water"],
+            "exercise": data["exercise"],
         }
     return render_template("form.html", result=result)
 
